@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+<style type="text/css">
+    
+*
+{
+    padding: 0px;
+    margin : 0px;
+}
+
+body
+{
+    overflow: hidden !important;
+}
+
+
+._hide
+{
+    display: none !important;
+}
+
+
+._content
+{
+    transform: none !important;
+    top : 0px !important;
+    left: 0px !important;
+}
+
+._container
+{
+    width: 100vw !important;
+    height : 100vh !important;
+
+    display: flex;
+    align-items: center;
+}
+
+canvas
+{
+    width: calc(100vw  - 2 * 2px) !important;
+    height:  calc(100vw * 0.45) !important;
+
+    border: 2px solid #eaeaea !important;
+}
+
+._BOX_0_
+{
+    position: absolute;
+    z-index: 10;
+
+    width: 100vw;
+    height: 100vh;
+
+    display : flex;
+    justify-content : center;
+    align-items : center;
+
+}
+
+._BOX_0_0_
+{
+
+    padding: 0.7rem;
+
+    color: #eee;
+    /*font-family: monospace;
+      font-weight: bold;*/
+
+    font-family: "Courier New" , attribute-mono , monospace;
+    font-weight: bold;
+    font-style: italic;
+
+    font-size: 14px;
+
+    width: max-content;
+    background: #333;
+
+
+    box-shadow : 0px 5px 0px 0px #222;
+}
+
+._BOX_0_0_:active
+{
+    transform : translate(0px , 3px);
+    box-shadow : 0px 2px 0px 0px #222;
+}
+
+
+</style>
+
+
+<script>
+console.log("..........");
+
+let _BOX_0_0_;
+
+
+let loading_triggger = false;
+let extract_triggger = false;
+
+
+
+function _progress(progress)
+{
+    if (!document.querySelector("._BOX_0_")) 
+    {
+        let _BOX_0_ = document.createElement("div");
+        _BOX_0_.setAttribute("class" , "_BOX_0_");
+
+
+        _BOX_0_0_ = document.createElement("div");
+        _BOX_0_0_.setAttribute("class" , "_BOX_0_0_");
+
+
+        _BOX_0_.appendChild(_BOX_0_0_);
+        document.body.appendChild(_BOX_0_);
+
+
+    }
+
+
+    let _stage = "preparing";
+    if(progress > 0.02)
+    {
+        _stage = "loading...  " + Math.floor((progress)/0.9  * 100).toString() + "%";
+    }
+    if(progress >= 0.89)
+    {
+        _stage = "extracting...";
+    }
+
+
+    console.log(progress);
+    _BOX_0_0_.innerHTML = ((progress / 0.9) * 5 ).toFixed(2).toString() + " mb / 5.00 mb" + "<br>" + _stage;
+
+    
+    if(progress == 1)
+    {
+        document.querySelector("._BOX_0_").style.display = "none";
+    }
+
+
+}
+
+</script>
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Unity WebGL Player | @CONFIG</title>
+<link rel="shortcut icon" href="TemplateData/favicon.ico">
+<link rel="stylesheet" href="TemplateData/style.css">
+<script src="TemplateData/UnityProgress.js"></script>
+<script src="Build/UnityLoader.js"></script>
+
+<script>
+  var gameInstance = UnityLoader.instantiate("gameContainer", "Build/INPUT_FIELD_0.json", {onProgress: UnityProgress});
+</script>
+
+
+
+</head>
+
+
+
+
+<body>
+
+
+<div class="webgl-content _content">
+
+  <div id="gameContainer" class = "_container" style="width: 1000px; height: 500px">
+    
+  </div>
+
+
+  <div class="footer _hide">
+    <div class="webgl-logo"></div>
+    <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+    <div class="title">@CONFIG</div>
+  </div>
+
+</div>
+
+
+</body>
+
+
+
+</html>
